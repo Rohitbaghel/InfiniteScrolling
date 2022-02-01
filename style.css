@@ -1,0 +1,50 @@
+
+*{ margin:0;
+    padding:0;
+
+}
+#container{
+   
+ max-width:70rem;
+    border:1px solid;
+    padding: 5rem 3rem;
+    background-color: aqua;
+    margin:auto;
+  
+}
+h1{ 
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+.div1{
+    max-width: 50rem;
+    width:30rem;
+    border:1px solid;
+    display: flex;
+   flex-direction: column;
+   justify-items: center;
+    background: aliceblue;
+    padding:4rem;
+   
+    margin: auto;
+    
+}
+.div1 img{
+    width: 30vw;
+    margin: auto;
+}
+h2{
+    border:1px solid;
+    height: 10vh;
+    width:10vw;
+    text-align: center;
+    background: red;
+    margin: auto;
+
+    
+}
+p{
+    padding:2rem;
+    font-size:18px
+}
