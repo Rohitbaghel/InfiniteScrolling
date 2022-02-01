@@ -38,13 +38,11 @@ div1.setAttribute('class', 'div1')
 getPhotos()
 
 function ScrollingView() {
-let interval =setTimeout(() =>{
+setTimeout(() =>{
     page++
     getPhotos()
 },300)
-if(page==10){
-    clearTimeout(interval)
-}
+
 
 }
 window.addEventListener('scroll', ()=>{

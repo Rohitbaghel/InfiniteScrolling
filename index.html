@@ -4,9 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Infinite Scrolling </title>
-  
+    <style>
+        *{ margin:0;
+            padding:0;
+
+        }
+        #container{
+           
+         
+            border:1px solid;
+            padding: 5rem 3rem;
+            background-color: aqua;
+            margin:auto;
+          
+        }
+        h1{ 
+            text-align: center;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+        .div1{
+            max-width: 40rem;
+            width:40rem;
+            border:1px solid;
+            display: flex;
+           flex-direction: column;
+           justify-items: center;
+            background: aliceblue;
+            padding:4rem;
+           
+            margin: auto;
+            
+        }
+        .div1 img{
+            width: 30vw;
+            margin: auto;
+        }
+        h2{
+            border:1px solid;
+            height: 10vh;
+            width:10vw;
+            text-align: center;
+            background: red;
+            margin: auto;
+
+            
+        }
+        p{
+            padding:2rem;
+            font-size:18px
+        }
+    </style>
 </head>
 <body>
     <div id="container">
@@ -14,4 +63,59 @@
     </div>
 </body>
 </html>
-<script src="script.js"></script>
+<script>
+let container = document.getElementById("container");
+let limit = 25
+let page = 1
+let getPhotos = async () =>{
+    try {
+let res = await fetch(`https://jsonplaceholder.typicode.com/photos?_limit=${limit}$_page=${page}`)
+let data = await res.json()
+AppendData(data)
+    }catch(e){
+      console.log(e)
+      
+    }
+
+}
+
+function AppendData (data){
+data.forEach(({id,title,url,thumbnailUrl})=>{
+    
+    let div1  = document.createElement('div')
+div1.setAttribute('class', 'div1')
+    let id_p = document.createElement('h2')
+    id_p.innerText =id
+    
+
+    let title1 = document.createElement('p')
+    title1.innerText = title
+    let image = document.createElement('img')
+    image.src =url
+    // let thumbnail = document.createElement('img')
+    // thumbnail.src = thumbnailUrl
+    // console.log(image)
+   div1.append(id_p,title1,image)
+   container.append(div1)
+  
+})
+}
+getPhotos()
+
+const showData =() => {
+setTimeout(() => {
+getPhotos()
+    page++;
+}, 300)
+}
+
+window.addEventListener('scroll', () => {
+     const {scrollHeight, scrollTop, clientHeight} = document.documentElement;
+     if(scrollTop + clientHeight > scrollHeight){
+        console.log('I am at bottom');
+        showData();
+     }
+} )
+
+
+</script>
